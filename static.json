@@ -1,0 +1,9 @@
+{
+  "headers": {
+    "/*": {
+      "X-Author" : "davidreband"
+      "X-Author" : "davidreband",
+      "Access-Control-Allow-Origin": "*"
+    }
+  }
+}
