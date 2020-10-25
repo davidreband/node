@@ -1,12 +1,13 @@
 {
+  "/index/*": {      
+      "X-Author" : "davidreband",
+      "Access-Control-Allow-Origin": "*"
+    },
   "headers": {
     "/*": {      
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*"
-    },
-    "/index/*": {      
-      "X-Author" : "davidreband",
-      "Access-Control-Allow-Origin": "*"
     }
+    
   }
 }
