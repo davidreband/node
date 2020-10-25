@@ -4,5 +4,9 @@
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*"
     }
+    "/login/*": {      
+      "X-Author" : "davidreband",
+      "Access-Control-Allow-Origin": "*"
+    }    
   }
 }
