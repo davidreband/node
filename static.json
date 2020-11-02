@@ -13,6 +13,16 @@
       "Content-Type": "text/plain; charset=UTF-8",
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*"      
+    },
+    "/promise/*": {      
+      "Content-Type": "text/plain; charset=UTF-8",
+      "X-Author" : "davidreband",
+      "Access-Control-Allow-Origin": "*"      
+    },
+    "/fetch/*": {      
+      "Content-Type": "text/plain; charset=UTF-8",
+      "X-Author" : "davidreband",
+      "Access-Control-Allow-Origin": "*"      
     }
   }
 }
