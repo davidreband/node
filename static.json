@@ -19,8 +19,7 @@
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*"      
     },
-    "/fetch/*": {      
-      "Content-Type": "text/plain; charset=UTF-8",
+    "/fetch/*": {
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*"      
     }
