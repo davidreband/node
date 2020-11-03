@@ -1,13 +1,5 @@
 function task(x){
 
-  return age =>  new Promise(  (res, rej) => x <  18 ? rej ('no'):  res ('yes'));
+  return  new Promise(  (res, rej) => x <  18 ? res ('yes') : rej ('no')   );
 
 }
-
-
-    new Clicker(async () => {
-        console.log( 'start');  
-      
-      const checkege = age =>  new Promise(  (res, rej) => age <  18 ? rej ('Mist ' +  age ):  res ('alles gut ' + age));
-      
-      checkege(20).then(x => console.log(x)).catch(e => console.log(e));
