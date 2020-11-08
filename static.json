@@ -26,6 +26,7 @@
     "/result4/*": {
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*",
+       "Content-Type": "application/json; charset=UTF-8",
       
       
     }
