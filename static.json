@@ -24,9 +24,10 @@
       "Access-Control-Allow-Origin": "*"      
     },
     "/result4/*": {
+      "Content-Type": "application/json",
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*",
-       "Content-Type": "application/json",
+       
       
       
     }
