@@ -24,7 +24,7 @@
       "Access-Control-Allow-Origin": "*"      
     },
     "/result4/*": { 
-      "Content-Type": "application/json",
+      
       "X-Author" : "davidreband",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
