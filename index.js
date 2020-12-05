@@ -3,15 +3,9 @@ import bodyParser from 'body-parser'
 import { createReadStream } from 'fs'
 import crypto from "crypto";
 import http from "http";
-import expressApp from "./app.js";
+import appSrc from "./app.js";
 
-const app = expressApp(
-  express ,
-  bodyParser,
-  createReadStream,
-  crypto,
-  http
-);
+const app = appSrc(express, bodyParser, createReadStream, crypto, http);
 
 try {
   app.listen(process.env.PORT ?? 4321);
