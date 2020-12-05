@@ -4,7 +4,7 @@ const s = Server((req,res) => {
     //debugger
     res.end('OK44\n')
 })
-s.listen(4321)
+s.listen(process.env.PORT)
 
 
 //ver 1
