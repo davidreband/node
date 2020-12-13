@@ -68,7 +68,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
         .set({ "Content-Type": "text/html; charset=utf-8" })
         .send(
           "<h1>HTML5</h1>" +
-            '<form action="http://localhost:4321/insert/" method="post">' +
+            '<form action="https://davidreband-week7.herokuapp.com/insert/" method="post">' +
             '<div>login: <input type="text" name="login"><br/><br/></div>' +
             '<div>password: <input type="text" required name="password" type="password"><br/><br/></div>' +
             '<div>URL: <input type="text" name="URL" value="mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"><br/><br/></div>' +

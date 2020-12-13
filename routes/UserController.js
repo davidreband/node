@@ -1,8 +1,6 @@
 export default (x, User) => {
   const router = x.Router();
 
-  console.log("__RRR", router);
-   
   router
     .route("/")    
     .get( async r => r.res.json(await User.find()))
@@ -23,8 +21,7 @@ export default (x, User) => {
   router
     .route("/:login")  
     .get( async (r) => {
-      const { login } = r.params;
-      console.log("__ee", "ddddd");
+      const { login } = r.params;      
       r.res.json(await User.find({ login }));
     });
   return router;
