@@ -14,7 +14,7 @@ import UserController from "./routes/UserController.js"
 //dot.config({ path: "./.env" })
 //const { URL } = process.env
 
-//const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
+//const URL = 
 
 const User = UserModel(mongoose);
 const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS)
