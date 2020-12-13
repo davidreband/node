@@ -8,7 +8,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
   };
   */
   const app = express();
-  const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
+  const URL = ""
 
   app
     .use((req, res, next) => {
