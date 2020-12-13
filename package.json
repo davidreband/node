@@ -6,8 +6,8 @@
   "author": "David Reband <david.reband@webanizer.de>",
   "license": "MIT",
   "type": "module",
-   "scripts": {
-    "start":"node .",
+  "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "html": "^1.0.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.7"
   }
 }
