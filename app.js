@@ -8,13 +8,75 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
   };
   */
   const app = express();
+  const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
+
   app
     .use((req, res, next) => {
       res.set(CORS);
       next();
     })
+    .use(bodyParser.urlencoded({ extended: true }))
     .use("/user/", UserController(express, User))
+
+    .post('/insert/', async (req, res) => {
+        const { URL, login, password } = req.body;
+
+        console.log("__ee", "fdssfs");
+        try {
+          await mongoose.connect(URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          });
+
+          const newUser = new User({ login, password });
+          await newUser.save();
+          res.status(201).send(`User was saved with login ${login}`);
+        } catch (e) {
+          res.send(e.codeName);
+        }
+      })
+
+
+
+
+    /*
+    .post('/user/', async (r) => {
+      const { URL, login, password } = r.body;
+      const newUser = new User({ login, password });
+
+      console.log("__ee", login);
+
+      try {
+        await mongoose.connect(URL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
+        await newUser.save();
+        r.res.status(201).json({ "Доавенно: ": login });
+      } catch (e) {
+        r.res.status(400).json({ "Ошибка:  ": "Нет пароля" });
+      }
+    })
+    */
     .get("/login/", (req, res) => res.send("davidreband"))
+     
+    .get("/insert/", (req, res) => {
+
+      console.log("__eggge", "saf");
+      res
+        .status(201)
+        .set({ "Content-Type": "text/html; charset=utf-8" })
+        .send(
+          "<h1>HTML5</h1>" +
+            '<form action="http://localhost:4321/insert/" method="post">' +
+            '<div>login: <input type="text" name="login"><br/><br/></div>' +
+            '<div>password: <input type="text" required name="password" type="password"><br/><br/></div>' +
+            '<div>URL: <input type="text" name="URL" value="mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"><br/><br/></div>' +
+            '<div><input type="submit" value="Submit"></div>' +
+            "</form>"
+        );
+    })
+
     /*
     .get("/user/", async (r) => r.res.json(await User.find()))
     .get("/user/:login", async (r) => {
