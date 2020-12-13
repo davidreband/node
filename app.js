@@ -18,26 +18,23 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
     .use(bodyParser.urlencoded({ extended: true }))
     .use("/user/", UserController(express, User))
 
-    .post('/insert/', async (req, res) => {
-        const { URL, login, password } = req.body;
+    .post("/insert/", async (req, res) => {
+      const { URL, login, password } = req.body;
 
-        console.log("__ee", "fdssfs");
-        try {
-          await mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-          });
+      console.log("__ee", "fdssfs");
+      try {
+        await mongoose.connect(URL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
 
-          const newUser = new User({ login, password });
-          await newUser.save();
-          res.status(201).send(`User was saved with login ${login}`);
-        } catch (e) {
-          res.send(e.codeName);
-        }
-      })
-
-
-
+        const newUser = new User({ login, password });
+        await newUser.save();
+        res.status(201).send(`User was saved with login ${login}`);
+      } catch (e) {
+        res.send(e.codeName);
+      }
+    })
 
     /*
     .post('/user/', async (r) => {
@@ -59,9 +56,8 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
     })
     */
     .get("/login/", (req, res) => res.send("davidreband"))
-     
-    .get("/insert/", (req, res) => {
 
+    .get("/insert/", (req, res) => {
       console.log("__eggge", "saf");
       res
         .status(201)
@@ -71,13 +67,14 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
             '<form action="https://davidreband-week7.herokuapp.com/insert/" method="post">' +
             '<div>login: <input type="text" name="login"><br/><br/></div>' +
             '<div>password: <input type="text" required name="password" type="password"><br/><br/></div>' +
-            '<div>URL: <input type="text" name="URL" value="mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"><br/><br/></div>' +
+            '<div>URL: <input type="text" name="URL" ><br/><br/></div>' +
             '<div><input type="submit" value="Submit"></div>' +
             "</form>"
         );
     })
 
     /*
+    value="mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
     .get("/user/", async (r) => r.res.json(await User.find()))
     .get("/user/:login", async (r) => {
       const { login } = r.params;
