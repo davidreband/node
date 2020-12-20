@@ -1,3 +1,5 @@
+
+import fetch from "node-fetch";
 export default (express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS) => {
   /*
   const CORS = {
@@ -15,13 +17,13 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
       res.set(CORS);
       next();
     })
+    .use(express.json())
     .use(bodyParser.urlencoded({ extended: true }))
     .use("/user/", UserController(express, User))
 
     .post("/insert/", async (req, res) => {
       const { URL, login, password } = req.body;
 
-      console.log("__ee", "fdssfs");
       try {
         await mongoose.connect(URL, {
           useNewUrlParser: true,
@@ -34,6 +36,83 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
       } catch (e) {
         res.send(e.codeName);
       }
+    })
+
+    .get("/wordpress/", async (req, res) => {
+      try {
+        //fetch("https://reband.ru/2020/12/19/hello-world/")
+        //.then((x) => x.json())
+
+        fetch("https://reband.ru/wp-json/wp/v2/posts/1")
+          .then((x) => x.json())
+          .then((x) => res.status(201).send(x));
+        //res
+        //  .set({ "Content-Type": "text/html; charset=utf-8" })
+        // .status(201)
+        // .send(x);}
+      } catch (e) {
+        console.error(e);
+      }
+    })
+
+    .get("/wordpress/wp-json/wp/v2", async (req, res) => {
+      try {
+        fetch("https://reband.ru/wp-json/wp/v2/posts/1")
+          .then((x) => x.json())
+          .then((x) => res.status(201).send(x));
+      } catch (e) {
+        console.error(e);
+      }
+
+      //console.log("_ddd", fromWordpress); :input
+    })
+
+    .get("/render/", (req, res) => {
+      console.log("__eggge", "saf");
+      res
+        .status(201)
+        .set({ "Content-Type": "text/html; charset=utf-8" })
+        .send(
+          "<h1>HTML5</h1>" +
+            '<form action="https://davidreband-week7.herokuapp.com/insert/" method="post">' +
+            '<div>login: <input type="text" name="login"><br/><br/></div>' +
+            '<div>password: <input type="text" required name="password" type="password"><br/><br/></div>' +
+            '<div>URL: <input type="text" name="URL" ><br/><br/></div>' +
+            '<div><input type="submit" value="Submit"></div>' +
+            "</form>"
+        );
+    })
+
+    .post("/render/", (req, res) => {
+      const { random2, random3 } = req.body;
+
+      console.log("_sss", req.query.addr);
+
+
+      //res.status(201).json({ "Доавенно: ": req.query.addr });
+
+      res.status(201).format({
+        "text/html": () =>
+          res.render("week7.pug", { random2: random2, random3: random3 })
+
+         // res.renderFile("http://kodaktor.ru/j/unsafe_0ebdb", {   random2: random2,      random3: random3,     }),
+      });
+
+      //r.params
+      /*
+      const { URL, login, password } = r.body; req.query.addr
+      const newUser = new User({ login, password });
+      try {
+        await mongoose.connect(URL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
+        await newUser.save();
+        r.res.status(201).json({ "Доавенно: ": login });
+      } catch (e) {
+        r.res.status(400).json({ "Ошибка:  ": "Нет пароля" });
+      }
+      */
     })
 
     /*
@@ -116,6 +195,7 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
         .status(500)
         .set({ "Content-Type": "text/html; charset=utf-8" })
         .send("Error");
-    });
+    })
+    .set("view engine", "pug");
   return app;
 };
