@@ -38,7 +38,8 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
       }
     })
 
-    .get("/header/", r => {
+    .put("/header/", r => {
+     // r.res.set(CORS);
       r.res.send('OK')
     })
 
