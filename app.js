@@ -1,6 +1,6 @@
 
 import fetch from "node-fetch";
-export default (express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS) => {
+export default (express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS, writeFileSync) => {
   /*
   const CORS = {
     "Access-Control-Allow-Origin": "*",
@@ -36,6 +36,10 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
       } catch (e) {
         res.send(e.codeName);
       }
+    })
+
+    .get("/header/", r => {
+      r.res.send('OK')
     })
 
     .get("/wordpress/", async (req, res) => {

@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { createReadStream } from 'fs'
+import { createReadStream, writeFileSync } from 'fs'
 import mongoose from 'mongoose'
 import crypto from "crypto"
 import http from "http"
@@ -17,7 +17,7 @@ import UserController from "./routes/UserController.js"
 //const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
 
 const User = UserModel(mongoose);
-const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS)
+const app = appSrc(express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS, writeFileSync)
 
 try {
   /*
