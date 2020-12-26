@@ -8,7 +8,9 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
     "Access-Control-Allow-Headers":
       "x-test,Content-Type,Accept, Access-Control-Allow-Headers",
   };
-  */
+headerCont  */
+
+
   const app = express();
   const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
 
@@ -38,9 +40,19 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
       }
     })
 
-    .put("/header/", r => {
-     // r.res.set(CORS);
-      r.res.send('OK')
+    .put("/header/", (r) => {
+      const CORS = {
+        "Access-Control-Allow-Origin": "*",
+      };
+      // r.res.set(CORS);
+      r.res.set(CORS).send("OK");
+    })
+    .options("/header/", (r) => {
+      const CORS = {
+        "Access-Control-Allow-Origin": "*",
+      };
+      // r.res.set(CORS);
+      r.res.set(CORS).send("OK");
     })
 
     .get("/wordpress/", async (req, res) => {
@@ -93,14 +105,13 @@ export default (express, bodyParser, createReadStream, crypto, http, mongoose, U
 
       console.log("_sss", req.query.addr);
 
-
       //res.status(201).json({ "Доавенно: ": req.query.addr });
 
       res.status(201).format({
         "text/html": () =>
-          res.render("week7.pug", { random2: random2, random3: random3 })
+          res.render("week7.pug", { random2: random2, random3: random3 }),
 
-         // res.renderFile("http://kodaktor.ru/j/unsafe_0ebdb", {   random2: random2,      random3: random3,     }),
+        // res.renderFile("http://kodaktor.ru/j/unsafe_0ebdb", {   random2: random2,      random3: random3,     }),
       });
 
       //r.params
