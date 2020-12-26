@@ -46,16 +46,16 @@ headerCont  */
     })
 
     .put("/header/", (r) => {
-      const CORS = {
-        "Access-Control-Allow-Origin": "*",
-      };
+      //const CORS = {
+      //  "Access-Control-Allow-Origin": "*",
+      //};
       // r.res.set(CORS);
       r.res.status(201).set(CORS).send("OK");
     })
     .options("/header/", (r) => {
-      const CORS = {
-        "Access-Control-Allow-Origin": "*",
-      };
+     // const CORS = {
+     //   "Access-Control-Allow-Origin": "*",
+     // };
       // r.res.set(CORS);
       r.res.status(201).set(CORS).send("OK");
     })
