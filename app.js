@@ -14,6 +14,11 @@ headerCont  */
   const app = express();
   const URL = "mongodb+srv://davidreband:umGN4stz3622@cluster0.gviiz.mongodb.net/mongodemo?retryWrites=true&w=majority"
 
+  const headerController = r => {
+
+    r.res.set(CORS).send("OK");
+  }
+
   app
     .use((req, res, next) => {
       res.set(CORS);
@@ -45,14 +50,14 @@ headerCont  */
         "Access-Control-Allow-Origin": "*",
       };
       // r.res.set(CORS);
-      r.res.set(CORS).send("OK");
+      r.res.status(201).set(CORS).send("OK");
     })
     .options("/header/", (r) => {
       const CORS = {
         "Access-Control-Allow-Origin": "*",
       };
       // r.res.set(CORS);
-      r.res.set(CORS).send("OK");
+      r.res.status(201).set(CORS).send("OK");
     })
 
     .get("/wordpress/", async (req, res) => {
