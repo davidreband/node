@@ -1,5 +1,6 @@
 
 import fetch from "node-fetch";
+import Browser from "zombie";
 export default (express, bodyParser, createReadStream, crypto, http, mongoose, User, UserController, CORS, writeFileSync) => {
   /*
   const CORS = {
@@ -28,6 +29,43 @@ headerCont  */
     .use(bodyParser.urlencoded({ extended: true }))
     .use("/user/", UserController(express, User))
 
+    .get("/test/", async (req, res) => {
+      const url = req.query.URL;
+
+      Browser.localhost(url, process.env.PORT);
+
+      const browser = new Browser();
+
+      //console.log(url);
+
+      await browser
+        .visit(url, function () {
+          console.log("_url", browser.location.href);
+          browser.pressButton("#bt");
+
+          console.log(browser.field('#inp').value);
+      res
+        .status(201)
+        .set({ "Content-Type": "text/plane; charset=utf-8" })
+        .send(browser.field("#inp").value);
+
+        
+        
+        })
+        
+
+      //aaa = await browser.html("#bt");
+
+      // var got = await browser.html("#bt");
+
+      //console.log("_got", aaa);
+
+      
+
+      //const shasum = crypto.createHash("sha1");
+      //shasum.update(input);
+    })
+
     .post("/insert/", async (req, res) => {
       const { URL, login, password } = req.body;
 
@@ -53,9 +91,9 @@ headerCont  */
       r.res.status(201).set(CORS).send("OK");
     })
     .options("/header/", (r) => {
-     // const CORS = {
-     //   "Access-Control-Allow-Origin": "*",
-     // };
+      // const CORS = {
+      //   "Access-Control-Allow-Origin": "*",
+      // };
       // r.res.set(CORS);
       r.res.status(201).set(CORS).send("OK");
     })
